@@ -1,0 +1,67 @@
+
+
+
+
+
+
+         Save Code
+
+
+         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=EmployeeDB;Integrated Security=True");
+            con.Open();
+            SqlCommand cnn = new SqlCommand("insert into Employee values(@employeeid,@employeename,@email,@salary)", con);
+            cnn.Parameters.AddWithValue("@EmployeeId", int.Parse(textBox1.Text));
+            cnn.Parameters.AddWithValue("@EmployeeName", textBox2.Text);
+            cnn.Parameters.AddWithValue("@Email", textBox3.Text);
+            cnn.Parameters.AddWithValue("@Salary", Convert.ToDecimal(textBox4.Text));
+            cnn.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Record Saved Successfully");
+
+
+
+
+         Insert Code
+
+
+         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=EmployeeDB;Integrated Security=True");
+            SqlCommand cnn = new SqlCommand("select * from Employee", con);
+            SqlDataAdapter da = new SqlDataAdapter(cnn);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+
+
+
+
+
+
+         Delete Code
+
+
+         SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=EmployeeDB;Integrated Security=True");
+            con.Open();
+            SqlCommand cnn = new SqlCommand("delete Employee where employeeid=@employeeid", con);
+            cnn.Parameters.AddWithValue("@EmployeeId", int.Parse(textBox1.Text));
+            
+            cnn.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("Record Deleted Successfully");
+
+
+
+         Form Load Code
+
+
+        SqlConnection con = new SqlConnection(@"Data Source=DESKTOP-HEEKBHE\SQLEXPRESS;Initial Catalog=EmployeeDB;Integrated Security=True");
+            SqlCommand cnn = new SqlCommand("select * from Employee", con);
+            SqlDataAdapter da = new SqlDataAdapter(cnn);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+            label8.Text = dt.Rows.Count.ToString();
+
+
+
+
+        
